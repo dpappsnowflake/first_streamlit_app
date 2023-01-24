@@ -77,7 +77,10 @@ def insert_row_snowflake(new_fruit):
 # Option to add fruit to list
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
 if streamlit.button('Add fruit to list'):
-  message = fruit_in_list(add_my_fruit) #insert_row_snowflake(add_my_fruit)
+  if fruit_in_list(add_my_fruit):
+    message = add_my_fruit.capitalize() + ' is already in the list.'
+  else:
+    message = insert_row_snowflake(add_my_fruit)
   streamlit.text(message)
 
 
