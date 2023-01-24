@@ -64,7 +64,8 @@ if streamlit.button('Get fruit load list'):
 def fruit_in_list(my_fruit):
   with snowflake.connector.connect(**streamlit.secrets["snowflake"]) as cnx:
     my_cur = cnx.cursor()
-    name_count = my_cur.execute(f"select count(*) from FRUIT_LOAD_LIST WHERE FRUIT_NAME ='{my_fruit}'")
+    my_cur.execute(f"select count(*) from FRUIT_LOAD_LIST WHERE FRUIT_NAME ='{my_fruit}'")
+    name_count = my_cur.fetchone()
     return name_count > 0
 
 def insert_row_snowflake(new_fruit):
