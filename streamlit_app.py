@@ -66,7 +66,7 @@ def fruit_in_list(my_fruit):
     my_cur = cnx.cursor()
     my_cur.execute(f"select count(*) from FRUIT_LOAD_LIST WHERE FRUIT_NAME ='{my_fruit}'")
     name_count = my_cur.fetchone()
-    return name_count > 0
+    return name_count
 
 def insert_row_snowflake(new_fruit):
   with snowflake.connector.connect(**streamlit.secrets["snowflake"]) as cnx:
